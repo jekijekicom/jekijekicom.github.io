@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .label {float: left; width: 150px;} /*memberi label*/
+        .infobox {width: 150px;}/*kotak untuk mengisi elemen*/
+        .error {color: red; padding-left: 10px; } .submit { margin-left: 150px; margin-top: 10px;}/*memunculkan elemen eror*/
+    </style>
+</head>
+<body>
+    <form>
+        <span class="label">Pilih Barang Yang Ingin Dibeli </span>
+        <select id="food" class="infobox">
+            <option value="0">Pilih Belanjaan</option>
+            <option value="Minuman Segar $1">Minuman Segar $1</option>
+            <option value="Makanan Ringan $3">Makanan Ringan $3</option>
+            <option value="Permen Karet $1">Permen Karet $1</option>
+            <option value="Tisu $2">Tisu $2</option>
+        </select>
+        <p class="error">Silahkan Pilih Barang Belanjaan</p>
+        <p class="result"></p>
+        <input class="submit" type="submit" value="Submit">
+    </form>  
+
+    <script>
+         $(document).ready(function() { //membuat fungsi tersedia
+            $('.error').hide(); //menyembunyikan pesan eror
+            $('.submit').click(function(event){ //fungsi tombol
+                var count=$('select option:selected').val();  //return nilai atribut
+                if(count==0){ //jika tidak ada nilai yang dipilih
+                    $('p.result').hide(); 
+                    $('.error').show(); //menampilkan pesan untuk nilai eror
+                } else {
+                    $('.error').hide();
+                    $('p.result').show();
+                    $('p.result').text('Total Belanjaan Anda '+$('select option:selected').text()); //menampilkan teks berdasarkan nilai
+                }
+            event.preventDefault(); //membatalkan event jika dibatalkan
+            }); 
+         });
+    </script>
+</body>
+</html>
